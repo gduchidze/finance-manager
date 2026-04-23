@@ -1,5 +1,7 @@
 package com.example.finance_manager.fragments
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,22 +38,35 @@ class FragmentB : Fragment() {
         )
         val manager = FinanceManager(model)
 
-        binding.gdTvTitle.text = "Finance Report"
-        binding.gdTvTotalExpenses.text = "Total expenses: %.2f".format(manager.totalExpenses)
-        binding.gdTvSavings.text = "Savings (${FinanceManager.SAVINGS_PERCENT}%): %.2f".format(manager.savingsAmount)
-        binding.gdTvRemaining.text = "Remaining: %.2f".format(manager.remaining)
-        binding.gdTvStatus.text = if (manager.isDeficit) "Status: DEFICIT" else "Status: OK"
-        binding.gdTvIdentity.text = "$FIRST_NAME $LAST_NAME — $BIRTH_YEAR"
+        binding.gdTvTitle.text = getString(R.string.gd_title_result)
+        binding.gdTvTotalExpenses.text = "Total expenses: %.2f ₾".format(manager.totalExpenses)
+        binding.gdTvSavings.text = "Savings (${FinanceManager.SAVINGS_PERCENT}%%): %.2f ₾".format(manager.savingsAmount)
+        binding.gdTvRemaining.text = "Remaining: %.2f ₾".format(manager.remaining)
+        binding.gdTvStatus.text = if (manager.isDeficit) "⚠ DEFICIT" else "✓ HEALTHY"
+        binding.gdTvIdentity.text = "$FIRST_NAME $LAST_NAME • $BIRTH_YEAR"
 
-        val colorRes = if (manager.isDeficit) R.color.red else R.color.green
-        val color = ContextCompat.getColor(requireContext(), colorRes)
+        val ctx = requireContext()
+        val isDeficit = manager.isDeficit
+        val textColor = ContextCompat.getColor(ctx, if (isDeficit) R.color.red else R.color.green)
+        val bgColor = ContextCompat.getColor(ctx, if (isDeficit) R.color.gd_red_bg else R.color.gd_green_bg)
+
         listOf(
             binding.gdTvTitle,
             binding.gdTvTotalExpenses,
             binding.gdTvSavings,
             binding.gdTvRemaining,
             binding.gdTvStatus
-        ).forEach { it.setTextColor(color) }
+        ).forEach { it.setTextColor(textColor) }
+
+        binding.gdCardHeader.setCardBackgroundColor(bgColor)
+
+        val pillBg = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            cornerRadius = 48f
+            setStroke(2, textColor)
+            setColor(Color.TRANSPARENT)
+        }
+        binding.gdTvStatus.background = pillBg
     }
 
     override fun onDestroyView() {

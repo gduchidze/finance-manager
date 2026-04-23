@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Finance Manager</string>
+    <string name="gd_title_input">Monthly Budget</string>
+    <string name="gd_subtitle_input">Enter your finances</string>
     <string name="gd_hint_salary">Salary</string>
     <string name="gd_hint_rent">Rent</string>
     <string name="gd_hint_food">Food</string>
     <string name="gd_btn_calculate">Calculate</string>
+    <string name="gd_title_result">Finance Report</string>
 </resources>
