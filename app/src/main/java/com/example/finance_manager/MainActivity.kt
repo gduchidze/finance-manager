@@ -26,6 +26,12 @@ class MainActivity : AppCompatActivity() {
             this
         ) { _, bundle ->
             supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left,
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_right
+                )
                 .replace(R.id.gd_fragment_container, FragmentB.newInstance(bundle))
                 .addToBackStack(null)
                 .commit()
