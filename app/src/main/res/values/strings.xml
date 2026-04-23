@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Finance Manager</string>
+    <string name="gd_hint_salary">Salary</string>
+    <string name="gd_hint_rent">Rent</string>
+    <string name="gd_hint_food">Food</string>
+    <string name="gd_btn_calculate">Calculate</string>
+</resources>
