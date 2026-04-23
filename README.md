@@ -2,6 +2,12 @@
 
 Personal budget Android app — one `MainActivity` hosting two fragments. Input financial data on screen A, view a styled report on screen B.
 
+## Demo
+
+| Input (Fragment A) | Healthy (Fragment B) | Deficit (Fragment B) |
+|:--:|:--:|:--:|
+| ![input](pics/input.png) | ![healthy](pics/healthy.png) | ![deficit](pics/deficit.png) |
+
 ## Features
 
 - **Fragment A (Input)** — Material outlined text fields for salary, rent, food; gradient hero card; rounded Calculate button
